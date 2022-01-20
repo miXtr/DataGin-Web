@@ -5,14 +5,75 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/x-icon" href="images/icons8-mind-map-64.png">
         <link rel="stylesheet" href="css/pico.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>DatagGin.cz</title>
+        <style>
+            .fa {
+                color: #bbc6ce;
+            }
+
+            .text-center {
+                text-align: center;
+            }
+        </style>
     </head>
     <body>
+        <header class="container">
+            <hgroup>
+                <h1>Hello, welcome on DataGin!</h1>
+                <h2>I'm Michal Trnka and this is my personal web presentation. I would like to show You some of my tech skills:
+                    front-end development by attached examples, back-end development on <a href="https://github.com/miXtr" target="_blank">GitHub</a> 
+                    repositories or <a href="https://www.linkedin.com/in/michaltrnka/" target="_blank">LinkedIn</a> profile.</h2>
+            </hgroup>
+            <nav>
+                <ul>
+                    <li>Fields of interest:</li>
+                    <li><a href="#">DevOps</a></li>
+                    <li><a href="#">3D & Three.js</a></li>
+                    <li><a href="#">Data Visualisation</a></li>
+                </ul>
+            </nav>
+        </header>
         <main class="container">
-            <h1>Hello, welcome on DataGin.cz!</h1>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/87/three.js"></script>
-            <div id="world"></div>
+            <!-- Preview -->
+            <section id="preview">
+                <div class="row">
+                    <h2>About Me</h2>
+                </div>
+                <div class="grid">
+                    <div>
+                        <img src="images/mtrnka_675x675.jpg" style="border-radius: 50%; width: 350px; height: 350px;" alt="Michal Trnka"></a>
+                    </div>
+                    <div style="text-align: justify;">
+                        <p>I'm hardworking, teachable and enthusiastic self-taught software developer with strong economics science background 
+                            and years of experience in finance industry, passionate about web, data and their visualization.</br>
+                        </br>
+                        Nowdays I'm improving my skill set in OOP, pushing further my database & web knowledge and trying to get more experience with automated testing, clean code principles, devops tools & pipelines, app containerization & k8s, and other basic and necessary stuff for skilled software engineer.</p>
+                    </div>
+                </div>
+            </section>
+            <article>
+                <section>
+                    <p>text</p>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/87/three.js"></script>
+                    <div id="world"></div>
+                </section>
+            </article>
         </main>
         <script src="js/script.js"></script>
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <p class="text-center">
+                        © <script>document.write(new Date().getFullYear());</script> DataGin.cz
+                    </p>
+                </div>
+                <div class="row text-center">
+                    <a href="https://github.com/miXtr" class="fa fa-github fa-2x"></a>&nbsp;&nbsp;&nbsp;
+                    <a href="https://www.linkedin.com/in/michaltrnka/" class="fa fa-linkedin fa-2x"></a>&nbsp;&nbsp;&nbsp;
+                    <a href="https://twitter.com/michalltrnka" class="fa fa-twitter fa-2x"></a>
+                </div>
+            </div>
+        </footer>
     </body>
 </html>
