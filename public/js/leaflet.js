@@ -83,7 +83,7 @@ function onEachFeature(feature, layer){
         click: zoomToFeature
     });
 }
-var geojsonLayer = readTextFile("./distictsCzechiaLow.json", function(text){
+var geojsonLayer = readTextFile("./resources/czechnuts.json", function(text){
     var data = JSON.parse(text);
 	data.features.forEach(function(region) {
 			var okres = okresy.find(item =>  {
