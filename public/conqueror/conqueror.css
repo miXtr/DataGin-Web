@@ -2,6 +2,27 @@ html, body {
     height: 100%;
     margin: 0;
 }
+.mapbox {
+    position: relative;
+}
+
+.mapbox .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 314159;
+    pointer-events: none;
+}
+
+/* .mapbox .overlay .btn {
+    pointer-events: auto;
+} */
+
+#map{
+    width: 1600px;
+    height: 1000px;
+}
+
 .leaflet-container {
     height: 1200px;
     width: 1600px;
@@ -20,6 +41,18 @@ border-radius: 5px;
 margin: 0 0 5px;
 color: #777;
 }
+
+.infoBar {
+    margin-top: 20px;
+    margin-left: 20px;
+    padding: 60px 80px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+
 .legend {
 line-height: 18px;
 color: #555;

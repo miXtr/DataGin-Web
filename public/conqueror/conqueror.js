@@ -5,7 +5,8 @@ var southWest = L.latLng(55, 8),
     bounds = L.latLngBounds(southWest, northEast);
 var map = L.map('map', {
     maxBounds: bounds,
-    minZoom: 5
+    minZoom: 5,
+    zoomControl: false
 }).setView([50.088, 14.42], 8);
 
 
@@ -66,14 +67,10 @@ info.onAdd = function (map) {
 // var infoBar = L.control();
 // infoBar.onAdd = function (map) {
 //     this._div = L.DomUtil.create('div', 'infoBar');
+//     this._div.innerHTML = '<h1>InfoBar</h1>';
 //     return this._div;
 // };
 // infoBar.addTo(map);
-// infoBar.update = function (region) {
-//     this._div.innerHTML = '<h1>InfoBar</h1>' +  (region ?
-//         '<b>Okres:</b>' + region.name + '<br /> Populace: ' + region.id
-//         : 'Hover over a state');
-// };
 
 // method that we will use to update the control based on feature properties passed
 info.update = function (region) {
@@ -249,8 +246,7 @@ function readTextFile(file, callback) {
 function init(){
     var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 	maxZoom: 18,
-	attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
-		'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+	attribution: 'Conqueror &copy; <a href="https://www.datagin.cz">Datagin.cz</a>',
 	id: 'mapbox/streets-v11',
 	tileSize: 512,
 	zoomOffset: -1
