@@ -1,26 +1,30 @@
 html, body {
     height: 100%;
     margin: 0;
+    background-color: slategray;
 }
 .mapbox {
-    position: relative;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .mapbox .overlay {
     position: absolute;
-    top: 0;
-    left: 0;
+    /* top: 0;
+    left: 0; */
     z-index: 314159;
     pointer-events: none;
 }
 
-/* .mapbox .overlay .btn {
+.mapbox .overlay .btn {
     pointer-events: auto;
-} */
+}
 
 #map{
     width: 1600px;
-    height: 1000px;
+    height: 920px;
 }
 
 .leaflet-container {
@@ -43,12 +47,42 @@ color: #777;
 }
 
 .infoBar {
-    margin-top: 20px;
-    margin-left: 20px;
-    padding: 60px 80px;
+    /* position: absolute; */
+    /* top: 0;
+    left: 0; */
+    /* margin-top: 20px;
+    margin-left: 20px; */
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    /* padding: 5px 5px; */
     font: 14px/16px Arial, Helvetica, sans-serif;
     background: white;
     background: rgba(255,255,255,0.8);
+    box-shadow: 10px 10px 10px 300px rgba(112, 128, 144, 0.87);
+    border-radius: 5px;
+    width: 1580px;
+    height: 888px;
+    /* opacity: 0.2; */
+    background-color: transparent;
+    outline:20px solid rgba(112, 128, 144);
+}
+
+.infoBarRight
+ {  
+     position: fixed;
+    justify-content: left;
+    align-items: left;
+    text-align: left;
+    /* top: 10;
+    right: 10; */
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 5px 5px 5px 5px;
+    /* padding: 60px 80px; */
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.3);
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     border-radius: 5px;
 }
