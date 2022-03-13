@@ -46,6 +46,38 @@ margin: 0 0 5px;
 color: #777;
 }
 
+/* .animated-icon{
+    width: 20px;
+    height: 20px;
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 50%;
+    box-shadow: 0px 0px 4px white;
+    transition: all 1s 
+  } */
+
+  .animated-icon {
+    /* Tamaño de la viñeta individual */
+    width:112px;
+    height:156px;
+    /* Cómo hay establecido un tamaño, centramos con margin:auto */
+    margin:auto;  
+    /* Cargamos el sprite (el repeat-x se puede omitir, por defecto se repite) */
+    background:url(ifk0SLH.png) repeat-x;
+    /* Aplicamos la animación "walk": 0.8seg, 6 viñetas y repetimos infinitamente */
+    animation:walk .8s steps(6) infinite;
+    /* Posicionamos el personaje sobre el camino de madera */
+    position:relative;
+    bottom:34px;
+  }
+  
+  /* Animación de personaje caminando: Simplemente mueve el sprite sheet hacia la izquierda, realizando el movimiento. */
+  @keyframes walk {
+    /* Partimos de la primera viñeta del sprite sheet */
+    0% { background-position:0 }
+    /* El tamaño total de ancho del sprite. Es negativo para que no "camine" hacia atrás */
+    100% { background-position:-672px }
+  }
+
 .infoBar {
     /* position: absolute; */
     /* top: 0;

@@ -256,6 +256,64 @@ function init(){
         minZoom: 5,
         zoomControl: false
     }).setView([45, 15], 5);
+    map.on("zoomstart", function (e) { console.log("ZOOMSTART source: " + e.sourceTarget._zoom + " target: " + e.target._zoom, e); });
+    map.on("zoomend", function (e) { console.log("ZOOMEND " + e.sourceTarget._zoom + " target: " + e.target._zoom, e); });
+
+    // var myMovingMarker = L.Marker.movingMarker([[48.8567, 2.3508],[50.45, 30.523333]],
+    //     [20000]).addTo(map);
+        //myMovingMarker.start();
+        var parisKievLL = [[48.8567, 2.3508], [50.45, 30.523333]];
+        // var londonParisRomeBerlinBucarest = [[51.507222, -0.1275], [48.8567, 2.3508], 
+        // [41.9, 12.5], [52.516667, 13.383333], [44.4166,26.1]];
+    
+        var icon = L.divIcon({
+            iconSize: [112, 156],
+            iconAnchor: [10, 10],
+            popupAnchor: [10, 0],
+            shadowSize: [0, 0],
+            className: 'animated-icon my-icon-id' 
+        })
+
+//marker latlng
+// var ll = L.latLng(45, 17)
+// // create marker
+// var marker = L.marker(ll, {
+//   icon: icon,
+//   title: 'look at me!'
+// })
+// marker.addTo(map)
+        var marker1 = L.Marker.movingMarker(parisKievLL, [100000], {icon: icon}).addTo(map);
+        L.polyline(parisKievLL).addTo(map);
+        marker1.once('click', function () {
+            marker1.start();
+            marker1.closePopup();
+            marker1.unbindPopup();
+            marker1.on('click', function() {
+                if (marker1.isRunning()) {
+                    marker1.pause();
+                } else {
+                    marker1.start();
+                }
+            });
+            setTimeout(function() {
+                marker1.bindPopup('<b>Click me to pause !</b>').openPopup();
+            }, 2000);
+        });
+        
+        
+        
+        marker1.bindPopup('<b>Click me to start !</b>', {closeOnClick: false});
+        marker1.openPopup();
+        
+        // var marker2 = L.Marker.movingMarker(londonParisRomeBerlinBucarest,
+        //     [3000, 2000, 5000, 3000], {autostart: true}).addTo(map);
+        // L.polyline(londonParisRomeBerlinBucarest, {color: 'red'}).addTo(map);
+        // map.fitBounds(londonParisRomeBerlinBucarest);
+        
+        // marker2.on('end', function() {
+        //     marker2.bindPopup('<b>Welcome to Bucarest !</b><br>GitHub Page: <a target="\\blanck" href="https://github.com/ewoken/Leaflet.MovingMarker"><img src="github.png"></a>', {closeOnClick: false})
+        //     .openPopup();
+        // });
 
     var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 	maxZoom: 18,
