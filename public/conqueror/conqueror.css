@@ -23,8 +23,9 @@ html, body {
 }
 
 #map{
-    width: 1600px;
-    height: 920px;
+  margin: 0 0 15px;
+    width: 1580px;
+    height: 888px;
 }
 
 .leaflet-container {
