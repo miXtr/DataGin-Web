@@ -249,16 +249,103 @@ function readTextFile(file, callback) {
     }
     rawFile.send(null);
 }
+var geojsonLayer;
+function showLevel(targetLevel){
+    // map.remove();
+    // map = L.map('map', {
+    //     //maxBounds: bounds,
+    //     minZoom: 5,
+    //     maxZoom: 10,
+    //     zoomControl: false
+    // }).setView([45, 15], targetZoom);
+    geojsonLayer = readTextFile("./distictsCzechiaLow.json", function(text){
+        var data = JSON.parse(text);
+        data.features.forEach(function(region) {
+                region.reset = true;
+                region.level = true;
+                var okres = okresy.find(item =>  {
+                    return item.name == region.properties.name;
+                })
+                if (typeof okres !== "undefined"){
+                    region.properties.id = okres.cnt
+                } else region.properties.id = 0
+                geojson = L.geoJson(region, {style: style, onEachFeature: onEachFeature}).addTo(map);
+            });
+        });
+        // var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+        //     maxZoom: 18,
+        //     attribution: 'Conqueror &copy; <a href="https://www.datagin.cz">Datagin.cz</a>',
+        //     id: 'mapbox/streets-v11',
+        //     tileSize: 512,
+        //     zoomOffset: -1
+        // }).addTo(map);
+    //     map.on("zoomstart", function (e) { console.log("ZOOMSTART source: " + e.sourceTarget._zoom + " target: " + e.target._zoom, e); });
+    // map.on("zoomend", function (e) {
+    //     console.log("ZOOMEND " + e.sourceTarget._zoom + " target: " + e.target._zoom, e); 
+    //     //initAfterZoom(e.target._zoom);
+    // });
+    // map.on('moveend', function() { 
+    //     console.log(map.getBounds());
+    // });
+}
+
+function zoomIn(src, trgt){
+    if (src < trgt){
+        return true
+    }
+    else{
+        return false
+    }
+}
+
+function showLevelIn(trgt){
+        if (trgt == 7)
+            return true
+        else 
+            return false
+}
+function showLevelOut(trgt){
+    if (trgt < 7)
+        return true
+    else 
+        return false
+}
 
 function init(){
     map = L.map('map', {
-        maxBounds: bounds,
+        //maxBounds: bounds,
         minZoom: 5,
+        maxZoom: 10,
         zoomControl: false
     }).setView([45, 15], 5);
-    map.on("zoomstart", function (e) { console.log("ZOOMSTART source: " + e.sourceTarget._zoom + " target: " + e.target._zoom, e); });
-    map.on("zoomend", function (e) { console.log("ZOOMEND " + e.sourceTarget._zoom + " target: " + e.target._zoom, e); });
-
+    var src = 0;
+    var trgt = 0;
+    map.on("zoomstart", function (e) { 
+        console.log("ZOOMSTART source: " + e.sourceTarget._zoom + " target: " + e.target._zoom, e); 
+        src = e.sourceTarget._zoom;
+    });
+    map.on("zoomend", function (e) {
+        console.log("ZOOMEND " + e.sourceTarget._zoom + " target: " + e.target._zoom, e); 
+        var trgt = e.target._zoom;
+        if (zoomIn(src, trgt)){
+            if (showLevelIn(trgt)){
+                showLevel(e.target._zoom);
+            }
+        }else{
+            if (showLevelOut(trgt)){
+                map.eachLayer(function (layer) {
+                    if (layer.feature){
+                        if (layer.feature.level == true) {
+                            map.removeLayer(layer);
+                        }
+                    }
+                });
+            }
+        }
+    });
+    map.on('moveend', function() { 
+        console.log(map.getBounds());
+    });
     // var myMovingMarker = L.Marker.movingMarker([[48.8567, 2.3508],[50.45, 30.523333]],
     //     [20000]).addTo(map);
         //myMovingMarker.start();
@@ -282,28 +369,30 @@ function init(){
 //   title: 'look at me!'
 // })
 // marker.addTo(map)
-        var marker1 = L.Marker.movingMarker(parisKievLL, [100000], {icon: icon}).addTo(map);
-        L.polyline(parisKievLL).addTo(map);
-        marker1.once('click', function () {
-            marker1.start();
-            marker1.closePopup();
-            marker1.unbindPopup();
-            marker1.on('click', function() {
-                if (marker1.isRunning()) {
-                    marker1.pause();
-                } else {
-                    marker1.start();
-                }
-            });
-            setTimeout(function() {
-                marker1.bindPopup('<b>Click me to pause !</b>').openPopup();
-            }, 2000);
-        });
+
+
+        // var marker1 = L.Marker.movingMarker(parisKievLL, [100000], {icon: icon}).addTo(map);
+        // L.polyline(parisKievLL).addTo(map);
+        // marker1.once('click', function () {
+        //     marker1.start();
+        //     marker1.closePopup();
+        //     marker1.unbindPopup();
+        //     marker1.on('click', function() {
+        //         if (marker1.isRunning()) {
+        //             marker1.pause();
+        //         } else {
+        //             marker1.start();
+        //         }
+        //     });
+        //     setTimeout(function() {
+        //         marker1.bindPopup('<b>Click me to pause !</b>').openPopup();
+        //     }, 2000);
+        // });
         
         
         
-        marker1.bindPopup('<b>Click me to start !</b>', {closeOnClick: false});
-        marker1.openPopup();
+        // marker1.bindPopup('<b>Click me to start !</b>', {closeOnClick: false});
+        // marker1.openPopup();
         
         // var marker2 = L.Marker.movingMarker(londonParisRomeBerlinBucarest,
         //     [3000, 2000, 5000, 3000], {autostart: true}).addTo(map);
@@ -315,12 +404,16 @@ function init(){
         //     .openPopup();
         // });
 
-    var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+    //var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWljaGFsdHJua2EiLCJhIjoiY2wwdXNqaDB0MHdsZDNsbjVjMDB6ZDR5ZiJ9.mONacYmtCytV8Y96HlN8xg', {
+    //var tiles = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+        var tiles = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {    
+            //var tiles = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}', {    
 	maxZoom: 18,
 	attribution: 'Conqueror &copy; <a href="https://www.datagin.cz">Datagin.cz</a>',
 	id: 'mapbox/streets-v11',
 	tileSize: 512,
-	zoomOffset: -1
+	zoomOffset: -1,
+    ext: 'jpg'
 }).addTo(map);
 
     readTextFile("./czechia.json", function(text){
