@@ -406,15 +406,18 @@ function init(){
 
     //var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWljaGFsdHJua2EiLCJhIjoiY2wwdXNqaDB0MHdsZDNsbjVjMDB6ZDR5ZiJ9.mONacYmtCytV8Y96HlN8xg', {
     //var tiles = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-        var tiles = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {    
-            //var tiles = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}', {    
-	maxZoom: 18,
-	attribution: 'Conqueror &copy; <a href="https://www.datagin.cz">Datagin.cz</a>',
-	id: 'mapbox/streets-v11',
-	tileSize: 512,
-	zoomOffset: -1,
-    ext: 'jpg'
-}).addTo(map);
+//         var tiles = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {    
+//             //var tiles = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}', {    
+// 	maxZoom: 18,
+// 	attribution: 'Conqueror &copy; <a href="https://www.datagin.cz">Datagin.cz</a>',
+// 	id: 'mapbox/streets-v11',
+// 	tileSize: 512,
+// 	zoomOffset: -1,
+//     ext: 'jpg'
+// }).addTo(map);
+
+var layer = new L.StamenTileLayer('terrain');
+map.addLayer(layer);
 
     readTextFile("./czechia.json", function(text){
         var countryGeoJson = JSON.parse(text);
