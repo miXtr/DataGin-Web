@@ -23,17 +23,35 @@ html, body {
 }
 
 #map{
-  margin: 0 0 15px;
+  /* width: 100%; */
+  /* margin: 0 0 15px;
     width: 1580px;
-    height: 888px;
+    height: 888px; */
 }
 
-.leaflet-container {
-    height: 1200px;
-    width: 1600px;
+@media only screen and (min-width: 1000px) {
+  .leaflet-container {
+    margin-top: 60px;
+    height: 888px;
+    width: 1580px;
     max-width: 100%;
     max-height: 100%;
+  }
 }
+@media only screen and (max-width: 999px) {
+  .leaflet-container {
+    height: 800px;
+    width: 1580px;
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+/* .leaflet-container {
+    height: 1200px;
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+} */
 .info {
 padding: 6px 8px;
 font: 14px/16px Arial, Helvetica, sans-serif;
@@ -83,8 +101,8 @@ color: #777;
     /* position: absolute; */
     /* top: 0;
     left: 0; */
-    /* margin-top: 20px;
-    margin-left: 20px; */
+    margin-top: 60px;
+    /* margin-left: 20px; */
     padding-top: 5px;
     padding-left: 5px;
     padding-right: 5px;
@@ -92,13 +110,13 @@ color: #777;
     font: 14px/16px Arial, Helvetica, sans-serif;
     background: white;
     background: rgba(255,255,255,0.8);
-    box-shadow: 10px 10px 10px 300px rgba(112, 128, 144, 0.87);
+    box-shadow: 0px 0px 0px 0px rgba(112, 128, 144, 0.87);
     border-radius: 5px;
     width: 1580px;
     height: 888px;
     /* opacity: 0.2; */
     background-color: transparent;
-    outline:20px solid rgba(112, 128, 144);
+    outline:20px solid rgb(55, 117, 179);
 }
 
 .infoBarRight
