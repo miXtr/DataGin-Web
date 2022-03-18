@@ -472,7 +472,7 @@ function init(tilestyle){
     readTextFile("./czechia.json", function(text){
         var countryGeoJson = JSON.parse(text);
         countryGeoJson.reset = true;
-        geojson = L.geoJson(countryGeoJson, {style: style, onEachFeature: onEachCountry}).addTo(map);
+        geojson = L.geoJson(countryGeoJson, {style: style, onEachFeature: onEachFeaturee}).addTo(map);
     });
     
     addCountryGeojsonLayer("slovakia");
