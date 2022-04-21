@@ -162,4 +162,12 @@ color: #777;
     border: 2px solid #e7e7e7;
   }
 
-  .resetbutton:hover {background-color: #e7e7e7;}
+.resetbutton:hover {background-color: #e7e7e7;}
+
+/* .modal {
+  height: 50ex;
+} */
+/* 
+.modal-body {
+    height: 1ex;
+ } */

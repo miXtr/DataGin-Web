@@ -35,7 +35,7 @@ var width = window.innerWidth
 // mapElement.style.height = y + "px";
 
 //document.getElementById("map").style.height = window.innerHeight;
-init("terrain");
+init("watercolor");
     
 
 	// var marker = L.marker([49.808, 16.31]).addTo(map);
@@ -472,7 +472,7 @@ function init(tilestyle){
     readTextFile("./czechia.json", function(text){
         var countryGeoJson = JSON.parse(text);
         countryGeoJson.reset = true;
-        geojson = L.geoJson(countryGeoJson, {style: style, onEachFeature: onEachFeaturee}).addTo(map);
+        geojson = L.geoJson(countryGeoJson, {style: style, onEachFeature: onEachFeature}).addTo(map);
     });
     
     addCountryGeojsonLayer("slovakia");

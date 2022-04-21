@@ -34,12 +34,12 @@
 						</tr> -->
 						<tr>
 							<td>
-								<button type="button"  class="btn" style="margin-top: 5px;" onclick="terrain()">Terrain</button>
+								<button type="button"  class="btn" style="margin-top: 5px;" onclick="watercolor()">Watercolor</button>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<button type="button"  class="btn" style="margin-top: 5px;" onclick="watercolor()">Watercolor</button>
+								<button type="button"  class="btn" style="margin-top: 5px;" onclick="terrain()">Terrain</button>
 							</td>
 						</tr>
 					</table>
@@ -49,9 +49,8 @@
     </div>
 	
 	<!-- Modal -->
-	<div class="modal fade" style="display: none;" id="myModal" role="dialog">
+	<div class="modal fade" style="display: none; margin-top: 10ex; opacity: 0.8;" id="myModal" role="dialog">
 	  <div class="modal-dialog">
-	  
 		<!-- Modal content-->
 		<div class="modal-content">
 		  <div class="modal-header">
@@ -59,7 +58,7 @@
 			<h4 id="modalTitleElement" class="modal-title">Modal Header</h4>
 		  </div>
 		  <div class="modal-body">
-			<p>Some text in the modal.</p>
+			<p id="modalBodyP"></p>
 		  </div>
 		  <div class="modal-footer">
 			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
